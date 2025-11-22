@@ -2,7 +2,7 @@ import {Dialog} from "primereact/dialog";
 import {Button} from "primereact/button";
 import {useForm} from "react-hook-form";
 import {BookmarkFolder} from "../../../libs/FormCmsAdminSdk";
-import {useEffect} from "react";
+import {JSX, useEffect} from "react";
 import {Message} from "primereact/message";
 
 type FolderEditDialogProps = {
