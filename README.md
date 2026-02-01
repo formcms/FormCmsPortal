@@ -1,100 +1,32 @@
-# FormCMS: The AI-Powered CMS
+# FormCmsPortal
 
-FormCMS is a cutting-edge, open-source Content Management System designed to revolutionize web development through AI. By automating the most tedious parts of development—schema design, data seeding, API creation, and UI building—FormCMS allows you to build complex, production-ready applications in minutes rather than weeks.
+This project is the portal interface for **FormCMS**.
 
----
+For a detailed overview of the system architecture, please refer to the [FormCMS Architecture Wiki](https://github.com/formcms/formcms/wiki/Architecture.md).
 
-## ⚡ Powering Your Workflow with AI
+## Setup
 
-FormCMS isn't just a place to store content; it's an AI-driven development partner. 
+1.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-### 1. Generate Entity (Schema)
-Forget manual table definitions. Simply describe your business domain (e.g., "I need a system to manage a digital library with books, authors, and rentals"), and FormCMS's AI will:
-- Design the normalized database schema.
-- Establish relationships (Many-to-One, Many-to-Many).
-- Configure appropriate data types (Strings, Numbers, Lookups, Junctions).
+2.  **Run development server**:
+    ```bash
+    npm run dev
+    ```
+    This will start the Vite development server, usually at `http://127.0.0.1:5173` (or as configured).
 
-### 2. Generate Data (Seeding)
-Tired of "Lorem Ipsum"? Use AI to generate realistic, high-quality sample data:
-- Populate your database with meaningful records.
-- Preserve relational integrity across entities.
-- Test your UI with data that looks and feels real.
+## Publish
 
-### 3. Generate Query (API)
-Writing GraphQL can be complex. In FormCMS, you can:
-- Prompt the AI to build logic: "Give me all books published after 2020 by authors with more than 5 stars."
-- The AI generates the GraphQL query and converts it into a secure, high-performance REST endpoint automatically.
+To build and publish the portal to the backend static files directory:
 
-### 4. Generate Page (UI)
-Go from prompt to page instantly:
-- "Build a landing page for my library that sections books by genre and features a search bar."
-- AI generates the HTML/CSS using semantic structures and bridges it with your data queries.
-
----
-
-## 🎥 In Action
-
-Watch FormCMS build a complete Library system (Entities, Data, Queries, and UI) from scratch in under 60 seconds (sped up 10x).
-
-![FormCMS Demo](https://github.com/formcms/formmate/blob/main/artifacts/demo_video.webp?raw=true)
-
----
-
-## 🚀 Quick Start
-
-Get the project running locally in 3 steps.
-
-### 1. Start Support Services (Docker)
-This command builds and starts the FormCMS backend and database in a container.
 ```bash
-sh rebuild.sh
-```
-_Verify that `http://127.0.0.1:5000` is accessible._
-
-### 2. Configure Environment
-Copy the example environment file and add your Google Gemini API Key.
-```bash
-cp packages/backend/.env.example packages/backend/.env
-```
-Inside `.env`, set your key:
-```ini
-GEMINI_API_KEY=your_key_here
+npm run publish-to-lib
 ```
 
-### 3. Start Development Server
-Run the frontend and backend agent locally.
-```bash
-npm run dev
-```
-Visit **http://localhost:5173/mate** to start building!
-
----
-
-## 🏗️ Architecture
-
-FormCMS is built on a modern, decoupled architecture designed for performance and flexibility.
-
-```mermaid
-graph TD
-    A[formmate] -->|AI-Generated Schema & UI| B[FormCMS Ecosystem]
-    C[FormCmsAdminApp] -->|Management & Editing| D[formcms Backend]
-    E[Portal / Frontend] -->|Consumes APIs| D
-```
-
-### 1. **formmate** (AI Schema & UI Builder)
-The "brain" of the ecosystem. This tool leverages LLMs to architect your data models and design your UI. It translates your natural language requirements into technical configurations that the system understands.
-
-### 2. **formcms** (Backend Engine)
-The core high-performance engine built with **ASP.NET Core (C#)**.
-- **REST & GraphQL**: Automatically exposes APIs for every entity you define.
-- **Normalized Storage**: Optimized for speed (Sqlite, Postgres, SQL Server, MySQL supported).
-- **Scale**: Designed to handle millions of records and high-concurrency environments.
-
-### 3. **FormCmsAdminApp** (Management Dashboard)
-A sleek, **React-based** administrative interface.
-- Manage your entities, queries, and pages.
-- Visual editors for relationships and data.
-- Built-in audit logging and publication workflows.
-
----
-
+**What this does:**
+1.  Builds the project using `vite build`.
+2.  Cleans the target directory: `../formCms/server/FormCMS/wwwroot/portal`.
+3.  Copies the new build artifacts to the target directory.
+4.  Stages the changes in git for the backend repository.
